@@ -1,0 +1,162 @@
+/* Refactored Animations for Elegant Boutique Style */
+
+/* Subtle glow pulse for highlights - soft gold shadow */
+@keyframes aiGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(197, 168, 128, 0.05), 0 0 20px rgba(197, 168, 128, 0.02);
+  }
+
+  50% {
+    box-shadow: 0 0 15px rgba(197, 168, 128, 0.15), 0 0 30px rgba(197, 168, 128, 0.05);
+  }
+}
+
+.ai-glow-pulse {
+  animation: aiGlow 6s infinite ease-in-out;
+}
+
+/* Floating animation for boutique graphics - extremely slow and subtle */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-4px) rotate(0.2deg);
+  }
+}
+
+.float-slow {
+  animation: float 12s infinite ease-in-out;
+}
+
+/* AI Beauty Scanner scan line effect - elegant gold bar */
+@keyframes scannerLine {
+  0% {
+    top: 0%;
+    opacity: 0.6;
+  }
+
+  50% {
+    top: 100%;
+    opacity: 0.6;
+  }
+
+  100% {
+    top: 0%;
+    opacity: 0.6;
+  }
+}
+
+.scanner-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanner-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  box-shadow: 0 0 6px var(--accent-gold);
+  animation: scannerLine 6s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Shimmer overlay for loading items - adjusted for warm ivory theme */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-bg {
+  background: linear-gradient(90deg, #F1ECE3 25%, #FCFBF7 50%, #F1ECE3 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+}
+
+/* Fade and Slide from bottom */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Typing indicator dots */
+@keyframes bounceDot {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.bounce-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--text-muted);
+  margin: 0 2px;
+  animation: bounceDot 2.0s infinite ease-in-out;
+}
+
+.bounce-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.bounce-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}
