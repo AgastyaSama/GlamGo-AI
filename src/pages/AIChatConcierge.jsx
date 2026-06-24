@@ -97,11 +97,20 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
         {/* Left Column: Chat Dialogue */}
         <GlassCard hover={false} className="chat-card-height" style={{ height: '600px', display: 'flex', flexDirection: 'column', padding: 'var(--space-xl)' }}>
           {/* Chat Header */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', borderBottom: '1px solid var(--border-light)', paddingBottom: '20px' }}>
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--accent-gold)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', borderBottom: '1px solid var(--border-light)', paddingBottom: '20px' }}>
+            <div style={{ position: 'relative', width: '10px', height: '10px', flexShrink: 0 }}>
+              <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--accent-gold)' }} />
+              <div style={{
+                position: 'absolute',
+                inset: '-3px',
+                borderRadius: '50%',
+                border: '1.5px solid rgba(197, 168, 128, 0.4)',
+                animation: 'pulse-glow-ring 2.5s infinite'
+              }} />
+            </div>
             <div>
-              <h2 style={{ fontSize: '18px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>AI Concierge Chat</h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '11px', marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Consulting in {selectedCity}</p>
+              <h2 style={{ fontSize: '18px', fontWeight: 600, fontFamily: 'var(--font-serif)', letterSpacing: '-0.01em' }}>Your <i style={{ color: 'var(--accent-gold)' }}>Beauty</i> Concierge</h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: '11px', marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Consulting Live · {selectedCity}</p>
             </div>
           </div>
 
@@ -220,7 +229,7 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
           <div style={{ display: 'flex', gap: '12px', borderTop: '1px solid var(--border-light)', paddingTop: '20px' }}>
             <input
               type="text"
-              placeholder="Tell us about your occasion, style goals, or budget..."
+              placeholder="Describe your occasion, style vision, or budget..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
@@ -254,7 +263,7 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
                   key={idx}
                   onClick={() => !isTyping && handleSend(prompt)}
                   style={{
-                    padding: '12px 16px',
+                    padding: '14px 16px',
                     borderRadius: '6px',
                     background: 'var(--bg-primary)',
                     border: '1px solid var(--border-light)',
@@ -263,7 +272,10 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
                     cursor: isTyping ? 'not-allowed' : 'pointer',
                     color: 'var(--text-secondary)',
                     opacity: isTyping ? 0.55 : 1,
-                    transition: 'opacity 0.25s ease-in-out, border-color 0.2s, background-color 0.2s'
+                    transition: 'opacity 0.25s ease-in-out, border-color 0.2s, background-color 0.2s',
+                    display: 'flex',
+                    gap: '14px',
+                    alignItems: 'flex-start'
                   }}
                   {...(isTyping ? {} : {
                     whileHover: {
@@ -278,20 +290,30 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
                     transition: { duration: DURATION.fast, ease: EASING.subtle }
                   })}
                 >
-                  "{prompt}"
+                  <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--accent-gold)', letterSpacing: '0.05em', fontFamily: 'var(--font-display)', marginTop: '1px', flexShrink: 0 }}>
+                    0{idx + 1}
+                  </span>
+                  <span>“{prompt}”</span>
                 </motion.div>
               ))}
             </div>
           </GlassCard>
 
-          <GlassCard hover={false} style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '32px', background: 'rgba(195, 151, 151, 0.04)', borderColor: 'rgba(195, 151, 151, 0.18)' }}>
-            <h4 style={{ fontSize: '14px', color: 'var(--accent-rose)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>AI Capabilities</h4>
-            <ul style={{ fontSize: '13px', color: 'var(--text-secondary)', paddingLeft: '16px', display: 'flex', flexDirection: 'column', gap: '8px', lineHeight: '1.5' }}>
-              <li style={{ listStyleType: 'circle' }}>Extracts budget thresholds dynamically</li>
-              <li style={{ listStyleType: 'circle' }}>Combines treatments into volume-discounted packages</li>
-              <li style={{ listStyleType: 'circle' }}>Ranks top local specialists matching your goals</li>
-              <li style={{ listStyleType: 'circle' }}>Drafts scheduling parameters automatically</li>
-            </ul>
+          <GlassCard hover={false} style={{ display: 'flex', flexDirection: 'column', gap: '14px', padding: '28px', background: 'rgba(252, 251, 247, 0.6)', borderColor: 'rgba(197, 168, 128, 0.15)' }}>
+            <p style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 600 }}>AI Capabilities</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                'Extracts budget thresholds dynamically',
+                'Bundles treatments into discounted packages',
+                'Ranks local specialists by match accuracy',
+                'Drafts scheduling parameters automatically'
+              ].map((cap, i) => (
+                <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                  <span style={{ fontSize: '12px', color: 'var(--accent-gold)', flexShrink: 0, marginTop: '1px' }}>✶</span>
+                  <span style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>{cap}</span>
+                </div>
+              ))}
+            </div>
           </GlassCard>
         </div>
 

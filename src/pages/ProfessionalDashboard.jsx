@@ -522,11 +522,11 @@ const ProfessionalDashboard = ({ setCurrentView, setSelectedProId }) => {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '32px' }}>
               {proServices.map((srv) => (
-                <GlassCard key={srv.id} hover={false} style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '24px' }}>
-                  <div>
-                    <span className="badge badge-ai" style={{ fontSize: '10px', marginBottom: '10px' }}>{srv.category}</span>
+                <GlassCard key={srv.id} hover={false} style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between', gap: '16px', padding: '24px' }}>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <span className="badge badge-ai" style={{ fontSize: '10px', marginBottom: '10px', width: 'fit-content' }}>{srv.category}</span>
                     <h3 style={{ fontSize: '16px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>{srv.name}</h3>
-                    <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '4px', minHeight: '36px', lineHeight: '1.5' }}>{srv.description}</p>
+                    <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '4px', minHeight: '36px', lineHeight: '1.5', flex: 1 }}>{srv.description}</p>
                     <span style={{ fontSize: '11px', color: 'var(--text-muted)', display: 'block', marginTop: '8px', textTransform: 'uppercase', letterSpacing: '0.03em' }}>Duration: {srv.durationMinutes} mins</span>
                   </div>
 

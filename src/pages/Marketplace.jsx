@@ -335,7 +335,8 @@ const Marketplace = ({ setCurrentView, setSelectedProId }) => {
         {/* Filters Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <h1 style={{ fontSize: '32px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Elite Professionals in {selectedCity}</h1>
+            <h1 style={{ fontSize: '32px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Elite <i>Professionals</i> in {selectedCity}</h1>
+            <div style={{ width: '32px', height: '1px', background: 'linear-gradient(90deg, var(--accent-gold), transparent)', margin: '10px 0 6px' }} />
             <p style={{ color: 'var(--text-secondary)', fontSize: '14.5px', marginTop: '4px' }}>
               Showing {filteredProfessionals.length} verified boutique partners.
             </p>
@@ -466,7 +467,7 @@ const Marketplace = ({ setCurrentView, setSelectedProId }) => {
                   color: 'var(--text-primary)',
                   marginBottom: '8px'
                 }}>
-                  No professionals found
+                  No <i>professionals</i> found
                 </h3>
                 <p style={{
                   fontSize: '13.5px',
@@ -521,9 +522,10 @@ const Marketplace = ({ setCurrentView, setSelectedProId }) => {
                 <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '32px', textAlign: 'center' }}>
                   <span className="badge badge-verified" style={{ marginBottom: '8px' }}>Expert Selection</span>
                   <h3 style={{ fontSize: '22px', fontWeight: 600, fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
-                    Top-Rated Partners in {selectedCity}
+                    Top-Rated <i>Partners</i> in {selectedCity}
                   </h3>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', marginTop: '4px' }}>
+                  <div style={{ width: '32px', height: '1px', background: 'linear-gradient(90deg, var(--accent-gold), transparent)', margin: '10px auto 0' }} />
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', marginTop: '8px' }}>
                     These certified artists are highly recommended and available for booking
                   </p>
                 </div>

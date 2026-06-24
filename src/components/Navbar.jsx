@@ -1,7 +1,7 @@
 import { useContext, useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AppContext } from '../context/AppContext';
-import { Sparkles, MapPin, Menu, X, ChevronDown, Award, ShieldAlert } from 'lucide-react';
+import { Sparkles, MapPin, ChevronDown, Award, ShieldAlert } from 'lucide-react';
 import { linkHoverProps, btnPrimaryHoverProps, btnSecondaryHoverProps, DURATION, EASING } from '../styles/motion';
 import UserAvatar from './UserAvatar';
 
@@ -880,13 +880,58 @@ const Navbar = ({ currentView, setCurrentView }) => {
         </div>
 
         {/* Mobile Hamburger Button */}
-        <button
+        <motion.button
           className="navbar-hamburger"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation menu"
+          whileHover={{
+            scale: 1.05,
+            borderColor: "var(--accent-gold)",
+            color: "var(--accent-gold)",
+            backgroundColor: "rgba(197, 168, 128, 0.05)"
+          }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: DURATION.fast, ease: EASING.subtle }}
         >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+          <motion.svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            animate={isOpen ? "open" : "closed"}
+            variants={{
+              closed: { rotate: 0 },
+              open: { rotate: 180 }
+            }}
+            transition={{ duration: DURATION.medium, ease: EASING.luxury }}
+          >
+            <motion.path
+              variants={{
+                closed: { d: "M 3 5 L 17 5" },
+                open: { d: "M 4 16 L 16 4" }
+              }}
+              transition={{ duration: DURATION.medium, ease: EASING.luxury }}
+            />
+            <motion.path
+              variants={{
+                closed: { opacity: 1, scaleX: 1 },
+                open: { opacity: 0, scaleX: 0 }
+              }}
+              transition={{ duration: DURATION.fast, ease: EASING.luxury }}
+              d="M 3 10 L 17 10"
+            />
+            <motion.path
+              variants={{
+                closed: { d: "M 3 15 L 17 15" },
+                open: { d: "M 4 4 L 16 16" }
+              }}
+              transition={{ duration: DURATION.medium, ease: EASING.luxury }}
+            />
+          </motion.svg>
+        </motion.button>
       </div>
 
       {/* Mobile Menu Drawer */}

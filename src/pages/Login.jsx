@@ -158,51 +158,53 @@ const Login = ({ setCurrentView }) => {
               fontSize: '48px',
               fontWeight: 500,
               fontFamily: 'var(--font-serif)',
-              lineHeight: '1.2',
-              color: 'var(--text-primary)'
+              lineHeight: '1.15',
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.03em'
             }}>
-              Your AI-Powered <br />
-              <span style={{ fontStyle: 'italic', color: 'var(--accent-gold)' }}>Beauty Concierge</span>
+              Your <i style={{ color: 'var(--accent-gold)' }}>Private</i><br />
+              Beauty Concierge.
             </h1>
 
             <p style={{
               fontSize: '15px',
               color: 'var(--text-secondary)',
-              lineHeight: '1.7',
-              marginTop: '16px'
+              lineHeight: '1.75',
+              marginTop: '20px',
+              maxWidth: '400px'
             }}>
-              Log in to access customized skin formulations, explore local verified salon professionals, edit catalog rates, and monitor real-time AI analytics.
+              Access curated home salon services, neural beauty diagnostics, and verified local artists — all under one private suite.
             </p>
 
-            {/* Glowing Brand Feature Badges */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '36px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {/* Editorial Pull-Quote Feature Pillars */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginTop: '40px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
                 <div style={{
-                  padding: '10px',
-                  borderRadius: '50%',
-                  background: 'rgba(28, 28, 28, 0.03)',
-                  border: '1px solid var(--border-light)'
-                }}>
-                  <Award size={16} color="var(--accent-gold)" />
-                </div>
+                  width: '2px',
+                  height: '36px',
+                  background: 'linear-gradient(to bottom, var(--accent-gold), transparent)',
+                  borderRadius: '1px',
+                  flexShrink: 0,
+                  marginTop: '4px'
+                }} />
                 <div>
-                  <h4 style={{ fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Verified Artists</h4>
-                  <p style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Elite network under platform shield auditing.</p>
+                  <h4 style={{ fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>Verified Pune Artists</h4>
+                  <p style={{ fontSize: '12.5px', color: 'var(--text-muted)', marginTop: '3px', lineHeight: '1.5' }}>Elite network under platform shield auditing.</p>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
                 <div style={{
-                  padding: '10px',
-                  borderRadius: '50%',
-                  background: 'rgba(28, 28, 28, 0.03)',
-                  border: '1px solid var(--border-light)'
-                }}>
-                  <Sparkles size={16} color="var(--accent-rose)" />
-                </div>
+                  width: '2px',
+                  height: '36px',
+                  background: 'linear-gradient(to bottom, var(--accent-rose), transparent)',
+                  borderRadius: '1px',
+                  flexShrink: 0,
+                  marginTop: '4px'
+                }} />
                 <div>
-                  <h4 style={{ fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Diagnostics Lab</h4>
-                  <p style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Computer vision scanning matching local treatments.</p>
+                  <h4 style={{ fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>Neural Diagnostics Lab</h4>
+                  <p style={{ fontSize: '12.5px', color: 'var(--text-muted)', marginTop: '3px', lineHeight: '1.5' }}>Computer vision matching treatments to your skin profile.</p>
                 </div>
               </div>
             </div>
@@ -280,14 +282,14 @@ const Login = ({ setCurrentView }) => {
             </AnimatePresence>
 
             {/* Header branding */}
-            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '36px' }}>
               <div style={{
                 display: 'inline-flex',
                 background: 'var(--text-primary)',
-                padding: '8px',
+                padding: '10px',
                 borderRadius: '6px',
-                marginBottom: '12px',
-                border: '1px solid var(--accent-gold)'
+                marginBottom: '16px',
+                border: '1px solid rgba(197, 168, 128, 0.35)'
               }}>
                 <Sparkles size={18} color="var(--bg-primary)" />
               </div>
@@ -295,16 +297,18 @@ const Login = ({ setCurrentView }) => {
                 fontSize: '24px',
                 fontWeight: 600,
                 fontFamily: 'var(--font-serif)',
-                color: 'var(--text-primary)'
+                color: 'var(--text-primary)',
+                letterSpacing: '-0.02em'
               }}>
-                Welcome back
+                Welcome <i style={{ color: 'var(--accent-gold)' }}>back</i>
               </h2>
               <p style={{
-                fontSize: '12.5px',
+                fontSize: '13px',
                 color: 'var(--text-secondary)',
-                marginTop: '4px'
+                marginTop: '6px',
+                lineHeight: '1.6'
               }}>
-                Enter details to open your custom suite
+                Enter your credentials to open your private beauty suite
               </p>
             </div>
 

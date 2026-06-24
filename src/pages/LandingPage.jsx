@@ -490,11 +490,12 @@ const LandingPage = ({ setCurrentView }) => {
               style={{
                 fontStyle: 'italic',
                 fontWeight: '400',
-                background: 'linear-gradient(90deg, #C5A880 0%, #E2CBB0 50%, #C5A880 100%)',
+                background: 'linear-gradient(90deg, #947243 0%, #C5A880 50%, #947243 100%)',
                 backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                display: 'inline-block'
+                display: 'inline-block',
+                filter: 'drop-shadow(0px 1px 2px rgba(28, 28, 28, 0.15))'
               }}
               animate={{
                 backgroundPosition: ['0% center', '200% center']
@@ -1079,7 +1080,8 @@ const LandingPage = ({ setCurrentView }) => {
           style={{ textAlign: 'center', marginBottom: 'var(--space-3xl)' }}
         >
           <span className="badge badge-ai" style={{ marginBottom: '12px' }}>Next-Gen Systems</span>
-          <h2 style={{ fontSize: 'var(--text-4xl)', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Beauty Intelligence Engine</h2>
+          <h2 style={{ fontSize: 'var(--text-4xl)', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Beauty <i>Intelligence</i> Engine</h2>
+          <div style={{ width: '36px', height: '1px', background: 'linear-gradient(90deg, transparent, var(--accent-gold), transparent)', margin: '14px auto 0' }} />
           <p style={{ color: 'var(--text-secondary)', maxWidth: '520px', margin: 'var(--space-sm) auto 0', fontSize: 'var(--text-base)' }}>
             GlamGo AI coordinates six specialized subsystems to deliver personal styling intelligence and doorstep luxury.
           </p>
@@ -1283,8 +1285,8 @@ const LandingPage = ({ setCurrentView }) => {
                       </div>
                       <div style={{ height: '1px', background: 'rgba(28,28,28,0.08)', margin: '2px 0' }} />
                       <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', color: '#27C93F', fontSize: '12px' }}>
-                        <span>Saved</span>
-                        <span>Saved ₹1300</span>
+                        <span>You Saved</span>
+                        <span>₹1300</span>
                       </div>
                     </div>
                   )}
@@ -1357,7 +1359,8 @@ const LandingPage = ({ setCurrentView }) => {
       >
         <div style={{ textAlign: 'center', marginBottom: 'var(--space-3xl)' }}>
           <span className="badge badge-ai" style={{ marginBottom: '12px' }}>Operational Blueprint</span>
-          <h2 style={{ fontSize: 'var(--text-4xl)', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Your AI Beauty Journey</h2>
+          <h2 style={{ fontSize: 'var(--text-4xl)', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Your AI Beauty <i>Journey</i></h2>
+          <div style={{ width: '36px', height: '1px', background: 'linear-gradient(90deg, transparent, var(--accent-gold), transparent)', margin: '14px auto 0' }} />
           <p style={{ color: 'var(--text-secondary)', maxWidth: '500px', margin: 'var(--space-sm) auto 0', fontSize: 'var(--text-base)' }}>
             Five simple steps combining neural skin profiling with elite doorstep styling in Pune.
           </p>
@@ -1484,7 +1487,8 @@ const LandingPage = ({ setCurrentView }) => {
       >
         <div style={{ textAlign: 'center', marginBottom: 'var(--space-3xl)' }}>
           <span className="badge badge-ai" style={{ marginBottom: '12px' }}>Interactive Sandbox</span>
-          <h2 style={{ fontSize: 'var(--text-4xl)', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Live AI Concierge Experience</h2>
+          <h2 style={{ fontSize: 'var(--text-4xl)', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Live AI Concierge <i>Experience</i></h2>
+          <div style={{ width: '36px', height: '1px', background: 'linear-gradient(90deg, transparent, var(--accent-gold), transparent)', margin: '14px auto 0' }} />
           <p style={{ color: 'var(--text-secondary)', maxWidth: '520px', margin: 'var(--space-sm) auto 0', fontSize: 'var(--text-base)' }}>
             Experience our conversational matching intelligence. Watch the AI parse local needs, calculate coordinates, and pair verified home artists.
           </p>
@@ -1828,7 +1832,8 @@ const LandingPage = ({ setCurrentView }) => {
           style={{ textAlign: 'center', marginBottom: 'var(--space-3xl)' }}
         >
           <span className="badge badge-ai" style={{ marginBottom: '12px' }}>Before & After Stories</span>
-          <h2 style={{ fontSize: 'var(--text-4xl)', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Transformation Journeys</h2>
+          <h2 style={{ fontSize: 'var(--text-4xl)', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Transformation <i>Journeys</i></h2>
+          <div style={{ width: '36px', height: '1px', background: 'linear-gradient(90deg, transparent, var(--accent-gold), transparent)', margin: '14px auto 0' }} />
           <p style={{ color: 'var(--text-secondary)', marginTop: 'var(--space-sm)', fontSize: 'var(--text-base)' }}>
             Real visual transformations powered and customized by GlamGo AI recommendations. Click side cards or use navigation buttons to browse.
           </p>
@@ -2075,18 +2080,19 @@ const LandingPage = ({ setCurrentView }) => {
             <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '280px' }}>
               Pune's premier home salon service marketplace. Matching doorstep beauty professionals and luxury treatments powered by AI recommendations.
             </p>
-            <div style={{ display: 'flex', gap: '12px', marginTop: '4px' }}>
+            <div style={{ display: 'flex', gap: '16px', marginTop: '8px', flexWrap: 'wrap' }}>
               {['Twitter', 'Instagram', 'LinkedIn', 'YouTube'].map((social) => (
                 <motion.a
                   key={social}
                   href="#"
                   style={{
-                    fontSize: '11px',
+                    fontSize: '10.5px',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
+                    letterSpacing: '0.07em',
                     fontWeight: 600,
                     color: 'var(--text-muted)',
-                    textDecoration: 'none'
+                    textDecoration: 'none',
+                    transition: 'color 0.2s ease'
                   }}
                   whileHover={{ color: 'var(--accent-gold)', y: -1 }}
                   transition={{ duration: 0.2 }}
@@ -2100,38 +2106,34 @@ const LandingPage = ({ setCurrentView }) => {
           {/* Quick Links */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'left' }}>
             <h4 style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-gold)', fontWeight: 600 }}>Explore</h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px', padding: 0 }}>
-              <li>
-                <a onClick={() => setCurrentView('landing')} style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer' }}>Home</a>
-              </li>
-              <li>
-                <a onClick={() => setCurrentView('marketplace')} style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer' }}>Marketplace</a>
-              </li>
-              <li>
-                <a onClick={() => setCurrentView('beautyScan')} style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer' }}>AI Diagnostics</a>
-              </li>
-              <li>
-                <a onClick={() => setCurrentView('chatConcierge')} style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer' }}>AI Concierge</a>
-              </li>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', padding: 0 }}>
+              {[['landing', 'Home'], ['marketplace', 'Marketplace'], ['beautyScan', 'AI Diagnostics'], ['chatConcierge', 'AI Concierge']].map(([view, label]) => (
+                <li key={view}>
+                  <motion.a
+                    onClick={() => setCurrentView(view)}
+                    style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer', display: 'inline-block' }}
+                    whileHover={{ color: 'var(--text-primary)', x: 3 }}
+                    transition={{ duration: 0.2 }}
+                  >{label}</motion.a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Business Links */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'left' }}>
             <h4 style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-gold)', fontWeight: 600 }}>Partners</h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px', padding: 0 }}>
-              <li>
-                <a onClick={() => setCurrentView('signup')} style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer' }}>Join as Partner</a>
-              </li>
-              <li>
-                <a onClick={() => setCurrentView('login')} style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer' }}>Professional Studio</a>
-              </li>
-              <li>
-                <a onClick={() => setCurrentView('login')} style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer' }}>Revenue Hub</a>
-              </li>
-              <li>
-                <a onClick={() => setCurrentView('login')} style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer' }}>Audit Guidelines</a>
-              </li>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', padding: 0 }}>
+              {[['signup', 'Join as Partner'], ['login', 'Professional Studio'], ['login', 'Revenue Hub'], ['login', 'Audit Guidelines']].map(([view, label], i) => (
+                <li key={i}>
+                  <motion.a
+                    onClick={() => setCurrentView(view)}
+                    style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer', display: 'inline-block' }}
+                    whileHover={{ color: 'var(--text-primary)', x: 3 }}
+                    transition={{ duration: 0.2 }}
+                  >{label}</motion.a>
+                </li>
+              ))}
             </ul>
           </div>
 

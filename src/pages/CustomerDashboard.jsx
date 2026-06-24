@@ -173,7 +173,7 @@ const CustomerDashboard = ({ setCurrentView, setSelectedProId }) => {
           <div className="slide-up" style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <h1 style={{ fontSize: '32px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Smart Beauty Planner</h1>
+                <h1 style={{ fontSize: '32px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Smart Beauty <i>Planner</i></h1>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginTop: '4px' }}>AI-scheduled routines and personalized preferences</p>
               </div>
               <motion.button
@@ -194,7 +194,7 @@ const CustomerDashboard = ({ setCurrentView, setSelectedProId }) => {
                 {/* Profile Preferences */}
                 <GlassCard hover={false} {...scrollReveal(0)} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   <h2 style={{ fontSize: '18px', fontWeight: 600, fontFamily: 'var(--font-serif)', borderBottom: '1px solid var(--border-light)', paddingBottom: '14px', color: 'var(--text-primary)' }}>
-                    Personal Beauty Profile
+                    Personal Beauty <i>Profile</i>
                   </h2>
                   <div className="stats-grid-responsive" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                     <div>
@@ -219,7 +219,7 @@ const CustomerDashboard = ({ setCurrentView, setSelectedProId }) => {
                 {/* Upcoming Appointments */}
                 <GlassCard hover={false} {...scrollReveal(0.05)} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
                   <h2 style={{ fontSize: '18px', fontWeight: 600, fontFamily: 'var(--font-serif)', borderBottom: '1px solid var(--border-light)', paddingBottom: '14px' }}>
-                    Upcoming Bookings Timeline
+                    Upcoming Bookings <i>Timeline</i>
                   </h2>
 
                   {upcomingBookings.length > 0 ? (
@@ -312,10 +312,10 @@ const CustomerDashboard = ({ setCurrentView, setSelectedProId }) => {
                             readOnly
                             style={{ marginTop: '3px', cursor: 'pointer', accentColor: 'var(--accent-rose)' }}
                           />
-                          <div style={{ opacity: isDone ? 0.5 : 1, transition: 'opacity 0.2s' }}>
-                            <span style={{ color: 'var(--accent-gold)', fontWeight: 500, fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.03em' }}>{item.time}</span>
-                            <h5 style={{ color: 'var(--text-primary)', fontWeight: 600, marginTop: '2px', fontSize: '13.5px', textDecoration: isDone ? 'line-through' : 'none' }}>{item.task}</h5>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '11.5px', marginTop: '4px', lineHeight: '1.5' }}>{item.details}</p>
+                          <div style={{ textAlign: 'left', opacity: isDone ? 0.5 : 1, transition: 'opacity 0.2s', flex: 1 }}>
+                            <span style={{ color: 'var(--accent-gold)', fontWeight: 500, fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.03em', display: 'block', textAlign: 'left' }}>{item.time}</span>
+                            <h5 style={{ color: 'var(--text-primary)', fontWeight: 600, marginTop: '2px', fontSize: '13.5px', textDecoration: isDone ? 'line-through' : 'none', textAlign: 'left' }}>{item.task}</h5>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '11.5px', marginTop: '4px', lineHeight: '1.5', textAlign: 'left' }}>{item.details}</p>
                           </div>
                         </div>
                       );
@@ -351,10 +351,10 @@ const CustomerDashboard = ({ setCurrentView, setSelectedProId }) => {
                             readOnly
                             style={{ marginTop: '3px', cursor: 'pointer', accentColor: 'var(--accent-gold)' }}
                           />
-                          <div style={{ opacity: isDone ? 0.5 : 1, transition: 'opacity 0.2s' }}>
-                            <span style={{ color: 'var(--accent-rose)', fontWeight: 500, fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.03em' }}>{item.time}</span>
-                            <h5 style={{ color: 'var(--text-primary)', fontWeight: 600, marginTop: '2px', fontSize: '13.5px', textDecoration: isDone ? 'line-through' : 'none' }}>{item.task}</h5>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '11.5px', marginTop: '4px', lineHeight: '1.5' }}>{item.details}</p>
+                          <div style={{ textAlign: 'left', opacity: isDone ? 0.5 : 1, transition: 'opacity 0.2s', flex: 1 }}>
+                            <span style={{ color: 'var(--accent-rose)', fontWeight: 500, fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.03em', display: 'block', textAlign: 'left' }}>{item.time}</span>
+                            <h5 style={{ color: 'var(--text-primary)', fontWeight: 600, marginTop: '2px', fontSize: '13.5px', textDecoration: isDone ? 'line-through' : 'none', textAlign: 'left' }}>{item.task}</h5>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '11.5px', marginTop: '4px', lineHeight: '1.5', textAlign: 'left' }}>{item.details}</p>
                           </div>
                         </div>
                       );

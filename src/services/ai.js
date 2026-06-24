@@ -174,30 +174,45 @@ export const processChatConcierge = (message, city = "Pune") => {
         occasion = "Skin Rejuvenation";
       }
 
-      // Gather Services
-      let chosenServices = [];
-      const allServices = INITIAL_SERVICES;
-
+      // Set categories based on occasion
       if (occasion === "Wedding") {
         categories = ["Makeup", "Hair Styling", "Nails"];
-        // Find services within category
-        const bridalSrv = allServices.find(s => s.id === "srv_priya_1");
-        const nailSrv = allServices.find(s => s.id === "srv_meera_2");
-        if (bridalSrv) chosenServices.push(bridalSrv);
-        if (nailSrv) chosenServices.push(nailSrv);
       } else if (occasion === "Special Evening Party") {
         categories = ["Makeup", "Nails"];
-        const partySrv = allServices.find(s => s.id === "srv_priya_2");
-        const nailSrv = allServices.find(s => s.id === "srv_meera_2");
-        if (partySrv) chosenServices.push(partySrv);
-        if (nailSrv) chosenServices.push(nailSrv);
       } else if (occasion === "Skin Rejuvenation") {
         categories = ["Facials", "Laser & Skin Care"];
-        const facSrv = allServices.find(s => s.id === "srv_ananya_1");
-        if (facSrv) chosenServices.push(facSrv);
       } else {
         categories = ["Hair Styling"];
-        const hairSrv = allServices.find(s => s.id === "srv_amit_1") || allServices.find(s => s.id === "srv_rahul_1");
+      }
+
+      // Pick the best Professional based on matched specialties
+      const matchedPros = INITIAL_PROFESSIONALS.filter(pro => {
+        return pro.specialty.some(spec => categories.includes(spec) || spec.includes("Specialist"));
+      });
+
+      const selectedPro = matchedPros[0] || INITIAL_PROFESSIONALS[0];
+      const matchScore = calculateMatchScore(selectedPro, categories);
+
+      // Gather Services ONLY from the selected professional
+      const allServices = INITIAL_SERVICES;
+      const proServices = allServices.filter(s => s.professionalId === selectedPro.id);
+      let chosenServices = [];
+
+      if (occasion === "Wedding") {
+        const bridalSrv = proServices.find(s => s.id === "srv_priya_1" || s.id === "srv_meera_1") || proServices[0];
+        const secondSrv = proServices.find(s => s.id === "srv_priya_2" || s.id === "srv_meera_2") || proServices[1];
+        if (bridalSrv) chosenServices.push(bridalSrv);
+        if (secondSrv) chosenServices.push(secondSrv);
+      } else if (occasion === "Special Evening Party") {
+        const partySrv = proServices.find(s => s.id === "srv_priya_2" || s.id === "srv_meera_2") || proServices[0];
+        if (partySrv) chosenServices.push(partySrv);
+      } else if (occasion === "Skin Rejuvenation") {
+        const facSrv = proServices.find(s => s.id === "srv_ananya_1" || s.id === "srv_rahul_1") || proServices[0];
+        const secondSrv = proServices.find(s => s.id === "srv_ananya_2") || proServices[1];
+        if (facSrv) chosenServices.push(facSrv);
+        if (secondSrv) chosenServices.push(secondSrv);
+      } else {
+        const hairSrv = proServices.find(s => s.id === "srv_amit_1" || s.id === "srv_rahul_1") || proServices[0];
         if (hairSrv) chosenServices.push(hairSrv);
       }
 
@@ -206,30 +221,27 @@ export const processChatConcierge = (message, city = "Pune") => {
       let sum = finalServices.reduce((a, b) => a + b.price, 0);
 
       if (budget && sum > budget) {
-        // Find cheaper services
-        finalServices = allServices.filter(s => categories.includes(s.category))
-          .sort((a, b) => a.price - b.price)
-          .slice(0, 2);
-
-        sum = finalServices.reduce((a, b) => a + b.price, 0);
-
-        // If still exceeds budget, just pick the single cheapest
-        if (sum > budget && finalServices.length > 0) {
-          finalServices = [finalServices[0]];
-          sum = finalServices[0].price;
+        // Sort selected professional's services by price and keep only those that fit
+        const cheaperServices = proServices.sort((a, b) => a.price - b.price);
+        
+        let tempServices = [];
+        let tempSum = 0;
+        for (let s of cheaperServices) {
+          if (tempSum + s.price <= budget) {
+            tempServices.push(s);
+            tempSum += s.price;
+          }
         }
+        if (tempServices.length === 0 && cheaperServices.length > 0) {
+          tempServices = [cheaperServices[0]];
+          tempSum = cheaperServices[0].price;
+        }
+        finalServices = tempServices;
+        sum = tempSum;
       }
 
-      // Pick the best Professional based on matched specialties
-      const matchedPros = INITIAL_PROFESSIONALS.filter(pro => {
-        // Specialties match or match some category
-        return pro.specialty.some(spec => categories.includes(spec) || spec.includes("Specialist"));
-      });
-
-      const selectedPro = matchedPros[0] || INITIAL_PROFESSIONALS[0];
-      const matchScore = calculateMatchScore(selectedPro, categories);
-
-      replyText = `I've designed a custom **${occasion} Package** for you in **${city}**. I selected ${finalServices.length} complementary services that fit perfectly. Based on your preferences, I highly recommend booking with **${selectedPro.id === 'pro_priya' ? 'Priya Nair' : selectedPro.id === 'pro_amit' ? 'Amit Malhotra' : 'Meera Joshi'}** (specialist in ${selectedPro.specialty.join(', ')}). They are a **${matchScore}% match** for your needs!`;
+      const proName = selectedPro.id === 'pro_priya' ? 'Priya Nair' : selectedPro.id === 'pro_amit' ? 'Amit Malhotra' : selectedPro.id === 'pro_ananya' ? 'Ananya Sen' : selectedPro.id === 'pro_rahul' ? 'Rahul Verma' : 'Meera Joshi';
+      replyText = `I've designed a custom **${occasion} Package** for you in **${city}**. I selected ${finalServices.length} complementary services that fit perfectly. Based on your preferences, I highly recommend booking with **${proName}** (specialist in ${selectedPro.specialty.join(', ')}). They are a **${matchScore}% match** for your needs!`;
 
       resolve({
         replyText,

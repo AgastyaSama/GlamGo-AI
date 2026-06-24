@@ -111,9 +111,9 @@ const BookingFlow = ({ setCurrentView, bookingParams }) => {
                 <ChevronLeft size={14} /> {step === 2 ? "Back to Review" : "Back to Profile"}
               </button>
               <div style={{ display: 'flex', gap: '8px', fontSize: '12px', color: 'var(--text-muted)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                <span style={{ color: step === 1 ? 'var(--accent-gold)' : 'var(--text-secondary)', transition: 'color 0.3s' }}>1. Review Package</span>
-                <span>•</span>
-                <span style={{ color: step === 2 ? 'var(--accent-gold)' : 'var(--text-muted)', transition: 'color 0.3s' }}>2. Secure Payment</span>
+                <span style={{ color: step === 1 ? 'var(--accent-gold)' : 'var(--text-secondary)', transition: 'color 0.3s' }}>I. Review</span>
+                <span>·</span>
+                <span style={{ color: step === 2 ? 'var(--accent-gold)' : 'var(--text-muted)', transition: 'color 0.3s' }}>II. Payment</span>
               </div>
             </div>
 
@@ -426,22 +426,63 @@ const BookingFlow = ({ setCurrentView, bookingParams }) => {
                 </motion.div>
 
                 <motion.h1
-                  style={{ fontSize: '32px', fontWeight: 600, fontFamily: 'var(--font-serif)', marginBottom: '12px' }}
+                  style={{ fontSize: '32px', fontWeight: 600, fontFamily: 'var(--font-serif)', marginBottom: '12px', letterSpacing: '-0.02em' }}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15, duration: 0.4 }}
                 >
-                  Appointment Confirmed
+                  Appointment <i style={{ color: 'var(--accent-gold)' }}>Confirmed</i>
                 </motion.h1>
                 <motion.p
-                  style={{ color: 'var(--text-secondary)', maxWidth: '480px', fontSize: '14.5px', lineHeight: '1.6', marginBottom: '36px' }}
+                  style={{ color: 'var(--text-secondary)', maxWidth: '480px', fontSize: '14.5px', lineHeight: '1.7', marginBottom: '32px' }}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.25, duration: 0.4 }}
                 >
                   Your payment of <strong style={{ color: 'var(--text-primary)' }}>₹{discountDetails.finalPrice}</strong> was authorized.
-                  We've synced this booking to your calendar schedule and notified **{proUser?.name}**.
+                  We've synced this booking to your calendar and notified <strong style={{ color: 'var(--text-primary)' }}>{proUser?.name}</strong>.
                 </motion.p>
+
+                {/* Luxury Booking Summary Card */}
+                <motion.div
+                  style={{
+                    background: 'rgba(252, 251, 247, 0.95)',
+                    border: '1px solid rgba(197, 168, 128, 0.25)',
+                    borderRadius: '8px',
+                    padding: '28px 32px',
+                    maxWidth: '480px',
+                    width: '100%',
+                    marginBottom: '32px',
+                    textAlign: 'left',
+                    boxShadow: '0 8px 32px rgba(28,28,28,0.04)'
+                  }}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                >
+                  <p style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 600, marginBottom: '16px' }}>Booking Summary</p>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    <div>
+                      <span style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Artist</span>
+                      <p style={{ fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', marginTop: '4px' }}>{proUser?.name}</p>
+                    </div>
+                    <div>
+                      <span style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Services</span>
+                      <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '4px' }}>{bookingParams?.services?.map(s => s.name).join(', ')}</p>
+                    </div>
+                    <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '12px' }}>
+                      <span style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Amount Paid</span>
+                      <p style={{ fontSize: '16px', fontWeight: 600, fontFamily: 'var(--font-serif)', color: 'var(--accent-gold)', marginTop: '4px' }}>₹{discountDetails.finalPrice}</p>
+                    </div>
+                    <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '12px' }}>
+                      <span style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Status</span>
+                      <p style={{ fontSize: '13px', fontWeight: 600, color: '#27A159', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                        <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#27A159', display: 'inline-block' }} />
+                        Confirmed
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
 
                 <motion.div
                   style={{ display: 'flex', gap: '16px' }}
@@ -452,18 +493,18 @@ const BookingFlow = ({ setCurrentView, bookingParams }) => {
                   <motion.button
                     onClick={() => setCurrentView('customerDashboard')}
                     className="btn-primary"
-                    style={{ padding: '12px 24px', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}
+                    style={{ padding: '12px 28px', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em' }}
                     {...btnPrimaryHoverProps}
                   >
-                    Go to My Schedule Planner
+                    View My Planner
                   </motion.button>
                   <motion.button
                     onClick={() => setCurrentView('marketplace')}
                     className="btn-secondary"
-                    style={{ padding: '12px 24px', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}
+                    style={{ padding: '12px 28px', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em' }}
                     {...btnSecondaryHoverProps}
                   >
-                    Browse Marketplace
+                    Explore More
                   </motion.button>
                 </motion.div>
               </div>

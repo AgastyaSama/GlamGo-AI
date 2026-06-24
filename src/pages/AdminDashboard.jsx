@@ -269,25 +269,30 @@ const AdminDashboard = ({ setCurrentView }) => {
 
                           {/* Role Column */}
                           <td style={{ padding: '12px' }}>
-                            <select
-                              value={u.role}
-                              onChange={(e) => handleRoleChange(u.id, e.target.value)}
-                              disabled={isSelf}
-                              style={{
-                                border: '1px solid var(--border-light)',
-                                background: 'var(--bg-secondary)',
-                                color: 'var(--text-primary)',
-                                padding: '4px 8px',
-                                borderRadius: '6px',
-                                outline: 'none',
-                                fontSize: '12.5px',
-                                cursor: isSelf ? 'not-allowed' : 'pointer'
-                              }}
-                            >
-                              <option value="customer">Customer</option>
-                              <option value="professional">Professional</option>
-                              <option value="admin">Admin</option>
-                            </select>
+                            {isSelf ? (
+                              <span className="badge badge-verified" style={{ padding: '4px 10px', fontSize: '12px', textTransform: 'capitalize', fontWeight: 500 }}>
+                                {u.role}
+                              </span>
+                            ) : (
+                              <select
+                                value={u.role}
+                                onChange={(e) => handleRoleChange(u.id, e.target.value)}
+                                style={{
+                                  border: '1px solid var(--border-light)',
+                                  background: 'var(--bg-secondary)',
+                                  color: 'var(--text-primary)',
+                                  padding: '4px 8px',
+                                  borderRadius: '6px',
+                                  outline: 'none',
+                                  fontSize: '12.5px',
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                <option value="customer">Customer</option>
+                                <option value="professional">Professional</option>
+                                <option value="admin">Admin</option>
+                              </select>
+                            )}
                           </td>
 
                           {/* Location Column */}

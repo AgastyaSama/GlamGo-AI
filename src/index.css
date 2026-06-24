@@ -129,7 +129,8 @@ h5,
 h6 {
   font-family: var(--font-serif);
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.012em;
+  line-height: 1.35;
   color: var(--text-primary);
 }
 
@@ -164,6 +165,7 @@ p {
 
 /* Boutique Card Styles */
 .glass-card {
+  position: relative;
   background: var(--bg-secondary);
   border: 1px solid var(--border-light);
   border-radius: 8px;
@@ -293,6 +295,22 @@ textarea:focus {
   border-bottom-color: var(--accent-gold);
   background: rgba(197, 168, 128, 0.015);
   box-shadow: 0 1px 0 0 var(--accent-gold);
+}
+
+/* Disabled Form Controls */
+.input-field:disabled,
+input[type="text"]:disabled,
+input[type="email"]:disabled,
+input[type="password"]:disabled,
+input[type="date"]:disabled,
+input[type="tel"]:disabled,
+input[type="number"]:disabled,
+select:disabled,
+textarea:disabled {
+  color: var(--text-muted) !important;
+  -webkit-text-fill-color: var(--text-muted) !important;
+  cursor: not-allowed;
+  opacity: 0.65;
 }
 
 .label-field,
@@ -667,6 +685,38 @@ select:focus-visible {
 
 .dropdown-action-item.logout-item:hover {
   background-color: rgba(195, 151, 151, 0.08) !important;
+  transform: translateX(4px);
+}
+
+/* ─── STATS BAR ICON HOVER MICRO-ANIMATION ──────────────────────────────────── */
+.icon-container-hover {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              background-color 0.3s ease;
+}
+
+.icon-container-hover:hover {
+  transform: translateY(-2px) scale(1.08);
+  border-color: rgba(197, 168, 128, 0.4) !important;
+  background-color: rgba(252, 251, 247, 1) !important;
+}
+
+/* ─── FOOTER NAV LINK HOVER TRANSITIONS ─────────────────────────────────────── */
+footer a {
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Arrow icon hover slide */
+.arrow-icon {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-card:hover .arrow-icon {
   transform: translateX(4px);
 }
 

@@ -110,12 +110,14 @@ const ProfessionalProfile = ({ setCurrentView, selectedProId, setBookingParams }
           {/* About & Portfolio */}
           <GlassCard hover={false} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', padding: 'var(--space-2xl)' }}>
             <div>
-              <h2 style={{ fontSize: '20px', fontWeight: 600, fontFamily: 'var(--font-serif)', marginBottom: '12px' }}>Biography</h2>
-              <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', lineHeight: '1.7' }}>{professional.biography}</p>
+              <h2 style={{ fontSize: '20px', fontWeight: 600, fontFamily: 'var(--font-serif)', marginBottom: '10px' }}>Artist <i style={{ color: 'var(--accent-gold)' }}>Biography</i></h2>
+              <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, var(--accent-gold), transparent)', marginBottom: '16px' }} />
+              <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', lineHeight: '1.75' }}>{professional.biography}</p>
             </div>
 
             <div>
-              <h2 style={{ fontSize: '20px', fontWeight: 600, fontFamily: 'var(--font-serif)', marginBottom: '16px' }}>Portfolio Highlights</h2>
+              <h2 style={{ fontSize: '20px', fontWeight: 600, fontFamily: 'var(--font-serif)', marginBottom: '10px' }}>Portfolio <i style={{ color: 'var(--accent-gold)' }}>Highlights</i></h2>
+              <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, var(--accent-gold), transparent)', marginBottom: '16px' }} />
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '16px' }}>
                 {professional.portfolio.map((img, i) => (
                   <div key={i} style={{ aspectRatio: '4/3', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--border-light)', cursor: 'pointer', position: 'relative' }}>
@@ -141,10 +143,11 @@ const ProfessionalProfile = ({ setCurrentView, selectedProId, setBookingParams }
 
           {/* Services Catalog Checklist */}
           <GlassCard hover={false} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', padding: 'var(--space-2xl)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Select Beauty Services</h2>
-              <span style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Choose treatments</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>Curate Your <i style={{ color: 'var(--accent-gold)' }}>Treatment</i></h2>
+              <span style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Select treatments</span>
             </div>
+            <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, var(--accent-gold), transparent)', marginBottom: '20px' }} />
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {proServices.map((srv) => {
@@ -208,7 +211,7 @@ const ProfessionalProfile = ({ setCurrentView, selectedProId, setBookingParams }
           {/* Booking Config Card */}
           <GlassCard hover={false} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)', padding: 'var(--space-xl)', borderColor: 'var(--accent-gold)' }}>
             <h3 style={{ fontSize: '18px', fontWeight: 600, fontFamily: 'var(--font-serif)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <BookOpen size={16} color="var(--accent-gold)" /> Select Schedule
+              <BookOpen size={16} color="var(--accent-gold)" /> Reserve Your <i style={{ color: 'var(--accent-gold)' }}>Date</i>
             </h3>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
