@@ -22,6 +22,7 @@ import ProfileSuite from './pages/ProfileSuite';
 import DeveloperSandbox from './components/DeveloperSandbox';
 import Toast from './components/Toast';
 import CinematicIntro from './components/CinematicIntro';
+import Footer from './components/Footer';
 
 
 function GlamGoApp() {
@@ -29,6 +30,7 @@ function GlamGoApp() {
   const [selectedProId, setSelectedProId] = useState('pro_priya'); // Default selector
   const [bookingParams, setBookingParams] = useState(null);
   const [showIntro, setShowIntro] = useState(true);
+  const [revealSweep, setRevealSweep] = useState(false);
 
   const { currentUser } = useContext(AppContext);
 
@@ -78,7 +80,9 @@ function GlamGoApp() {
         {showIntro && (
           <CinematicIntro
             onComplete={() => {
+              window.scrollTo(0, 0);
               setShowIntro(false);
+              setRevealSweep(true);
             }}
           />
         )}
@@ -86,20 +90,21 @@ function GlamGoApp() {
 
       <motion.div
         animate={{
-          filter: showIntro ? 'blur(10px)' : 'blur(0px)',
-          scale: showIntro ? 0.98 : 1,
+          filter: showIntro ? 'blur(12px)' : 'blur(0px)',
+          scale: showIntro ? 0.985 : 1,
           opacity: showIntro ? 0 : 1,
         }}
         transition={{
-          duration: 0.5,
+          duration: 0.9,
           ease: [0.16, 1, 0.3, 1],
         }}
         style={{
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          transformOrigin: 'center center',
           width: '100%',
+          pointerEvents: showIntro ? 'none' : 'auto',
+          transformOrigin: 'center top',
         }}
       >
         <AmbientBackground />
@@ -121,8 +126,31 @@ function GlamGoApp() {
             </motion.div>
           </AnimatePresence>
         </div>
-        <DeveloperSandbox setCurrentView={setCurrentView} />
+        <Footer setCurrentView={setCurrentView} />
       </motion.div>
+
+      {/* Luxury Gold Sweep Reveal Overlay */}
+      <AnimatePresence>
+        {revealSweep && (
+          <motion.div
+            initial={{ x: '-100%' }}
+            animate={{ x: '180%' }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            onAnimationComplete={() => setRevealSweep(false)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              bottom: 0,
+              width: '100%',
+              background: 'linear-gradient(90deg, transparent 30%, rgba(197, 168, 128, 0.12) 50%, transparent 70%)',
+              zIndex: 99998,
+              pointerEvents: 'none',
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      {!showIntro && <DeveloperSandbox setCurrentView={setCurrentView} />}
       <Toast />
     </div>
 

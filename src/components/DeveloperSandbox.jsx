@@ -45,10 +45,13 @@ const DeveloperSandbox = ({ setCurrentView }) => {
       {/* Floating Trigger Badge */}
       <motion.div
         onClick={() => setIsOpen(true)}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         style={{
           position: 'fixed',
-          bottom: '24px',
-          right: '24px',
+          bottom: '32px',
+          right: '32px',
           zIndex: 9999,
           background: 'linear-gradient(135deg, #1C1C1C 0%, #2A2A2A 100%)',
           color: 'var(--accent-gold)',
@@ -63,9 +66,10 @@ const DeveloperSandbox = ({ setCurrentView }) => {
           userSelect: 'none'
         }}
         whileHover={{ 
-          scale: 1.05,
+          y: -4,
+          scale: 1.02,
           borderColor: 'rgba(197, 168, 128, 0.8)',
-          boxShadow: '0 6px 25px rgba(197, 168, 128, 0.25)'
+          boxShadow: '0 0 20px rgba(197, 168, 128, 0.3), 0 4px 25px rgba(197, 168, 128, 0.2)'
         }}
         whileTap={{ scale: 0.95 }}
       >

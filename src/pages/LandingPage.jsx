@@ -469,7 +469,7 @@ const LandingPage = ({ setCurrentView }) => {
           <motion.div variants={fadeUpVariant(0.1)} style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>
             <span className="badge badge-ai" style={{ fontSize: 'var(--text-sm)', padding: '6px 14px' }}>
               <Sparkles size={12} style={{ animation: 'float 4s infinite ease-in-out' }} />
-              Bespoke Home Salon Service • Pune
+              Pune's AI Powered Home Salon Concierge
             </span>
           </motion.div>
 
@@ -485,7 +485,7 @@ const LandingPage = ({ setCurrentView }) => {
               letterSpacing: '-0.02em'
             }}
           >
-            Private Beauty Specialists, <br />
+            Pune's Smartest <br />
             <motion.span
               style={{
                 fontStyle: 'italic',
@@ -506,8 +506,10 @@ const LandingPage = ({ setCurrentView }) => {
                 ease: 'linear'
               }}
             >
-              Curated by Intelligence.
-            </motion.span>
+              AI Beauty Concierge
+            </motion.span> <br />
+            Salon Luxury Delivered <br />
+            Home
           </motion.h1>
 
           {/* Editorial gold accent divider */}
@@ -526,7 +528,7 @@ const LandingPage = ({ setCurrentView }) => {
             variants={fadeUpVariant(0.4)}
             style={{ fontSize: '17px', color: 'var(--text-secondary)', lineHeight: '1.75', maxWidth: '540px' }}
           >
-            Experience AI-powered skin analysis, smart stylist matching, personalized beauty plans, and verified Pune beauty experts at your doorstep.
+            Experience AI-powered skin analysis, smart stylist matching, personalized beauty planning, and verified Pune salon experts at your doorstep.
           </motion.p>
 
           {/* CTA buttons */}
@@ -2021,186 +2023,7 @@ const LandingPage = ({ setCurrentView }) => {
         </div>
       </motion.section>
 
-      {/* ── 5. PREMIUM FOOTER ────────────────────────────────────────────────── */}
-      {/* Gold divider above footer */}
-      <div style={{ display: 'flex', justifyContent: 'center', padding: 'var(--space-2xl) 0 0' }}>
-        <div style={{
-          width: '64px',
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent, var(--accent-gold), transparent)'
-        }} />
-      </div>
-      <footer style={{
-        marginTop: 'var(--space-xl)',
-        borderTop: '1px solid rgba(197, 168, 128, 0.2)',
-        background: 'rgba(28, 28, 28, 0.02)',
-        paddingTop: 'var(--space-3xl)',
-        paddingBottom: 'var(--space-xl)',
-        position: 'relative',
-        zIndex: 1,
-        overflow: 'hidden'
-      }}>
-        {/* Subtle decorative glow in footer */}
-        <div style={{
-          position: 'absolute',
-          bottom: '-100px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '500px',
-          height: '250px',
-          borderRadius: '250px 250px 0 0',
-          background: 'radial-gradient(circle, rgba(197, 168, 128, 0.04) 0%, transparent 75%)',
-          pointerEvents: 'none'
-        }} />
 
-        <div className="container footer-grid-responsive" style={{
-          display: 'grid',
-          gridTemplateColumns: '1.2fr 0.8fr 0.8fr 1.2fr',
-          gap: 'var(--space-xl)',
-          marginBottom: 'var(--space-2xl)'
-        }}>
-          {/* Brand Col */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'left' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{
-                background: 'linear-gradient(135deg, #1C1C1C 0%, #2A2A2A 100%)',
-                borderRadius: '6px',
-                padding: '6px',
-                border: '1px solid rgba(197, 168, 128, 0.3)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <Sparkles size={14} color="var(--bg-primary)" />
-              </div>
-              <span style={{ fontSize: '18px', fontWeight: 700, fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
-                GlamGo <span style={{ fontStyle: 'italic', color: 'var(--accent-gold)' }}>AI</span>
-              </span>
-            </div>
-            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '280px' }}>
-              Pune's premier home salon service marketplace. Matching doorstep beauty professionals and luxury treatments powered by AI recommendations.
-            </p>
-            <div style={{ display: 'flex', gap: '16px', marginTop: '8px', flexWrap: 'wrap' }}>
-              {['Twitter', 'Instagram', 'LinkedIn', 'YouTube'].map((social) => (
-                <motion.a
-                  key={social}
-                  href="#"
-                  style={{
-                    fontSize: '10.5px',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.07em',
-                    fontWeight: 600,
-                    color: 'var(--text-muted)',
-                    textDecoration: 'none',
-                    transition: 'color 0.2s ease'
-                  }}
-                  whileHover={{ color: 'var(--accent-gold)', y: -1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {social}
-                </motion.a>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'left' }}>
-            <h4 style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-gold)', fontWeight: 600 }}>Explore</h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', padding: 0 }}>
-              {[['landing', 'Home'], ['marketplace', 'Marketplace'], ['beautyScan', 'AI Diagnostics'], ['chatConcierge', 'AI Concierge']].map(([view, label]) => (
-                <li key={view}>
-                  <motion.a
-                    onClick={() => setCurrentView(view)}
-                    style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer', display: 'inline-block' }}
-                    whileHover={{ color: 'var(--text-primary)', x: 3 }}
-                    transition={{ duration: 0.2 }}
-                  >{label}</motion.a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Business Links */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'left' }}>
-            <h4 style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-gold)', fontWeight: 600 }}>Partners</h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', padding: 0 }}>
-              {[['signup', 'Join as Partner'], ['login', 'Professional Studio'], ['login', 'Revenue Hub'], ['login', 'Audit Guidelines']].map(([view, label], i) => (
-                <li key={i}>
-                  <motion.a
-                    onClick={() => setCurrentView(view)}
-                    style={{ color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer', display: 'inline-block' }}
-                    whileHover={{ color: 'var(--text-primary)', x: 3 }}
-                    transition={{ duration: 0.2 }}
-                  >{label}</motion.a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter Col */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'left' }}>
-            <h4 style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-gold)', fontWeight: 600 }}>Stay Updated</h4>
-            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-              Subscribe to unlock premium AI reports and local beauty trends.
-            </p>
-            <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
-              <input
-                type="email"
-                placeholder="Enter email address"
-                style={{
-                  flex: 1,
-                  background: 'rgba(252, 251, 247, 0.8)',
-                  border: '1px solid rgba(197, 168, 128, 0.25)',
-                  borderRadius: '6px',
-                  padding: '8px 12px',
-                  fontSize: '12px',
-                  outline: 'none',
-                  color: 'var(--text-primary)',
-                  fontFamily: 'var(--font-display)',
-                  minWidth: '0'
-                }}
-              />
-              <motion.button
-                onClick={() => showToast("Subscribed! Thank you for joining GlamGo.", "success")}
-                className="btn-primary"
-                style={{
-                  padding: '8px 16px',
-                  fontSize: '11px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                  borderRadius: '6px',
-                  whiteSpace: 'nowrap'
-                }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Join
-              </motion.button>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom copyright line */}
-        <div className="container" style={{
-          borderTop: '1px solid rgba(197, 168, 128, 0.1)',
-          paddingTop: '20px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          fontSize: '11.5px',
-          color: 'var(--text-muted)',
-          flexWrap: 'wrap',
-          gap: '12px'
-        }}>
-          <span>© {new Date().getFullYear()} GlamGo AI Technologies. All rights reserved.</span>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <a href="#" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Privacy Policy</a>
-            <a href="#" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Terms of Service</a>
-            <span>•</span>
-            <span>Pune, India</span>
-          </div>
-        </div>
-      </footer>
 
     </div>
   );

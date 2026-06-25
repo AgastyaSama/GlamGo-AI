@@ -5,8 +5,66 @@ import BrandLogo from './Logo';
 // Luxury ease-out decel curve: [0.16, 1, 0.3, 1]
 const LUXURY_EASE = [0.16, 1, 0.3, 1];
 
+const AnimatedInitText = ({ step }) => {
+  const texts = [
+    "Initializing Beauty Intelligence",
+    "AI Vision Engine",
+    "Salon Match System"
+  ];
+  const activeText = texts[step] || "";
+  const characters = activeText.split("");
+
+  return (
+    <motion.h2
+      key={step}
+      style={{
+        fontFamily: "'Playfair Display', serif",
+        fontSize: '20px',
+        fontStyle: 'italic',
+        fontWeight: 400,
+        color: '#4A4844',
+        letterSpacing: '0.14em',
+        margin: 0,
+        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        minHeight: '30px'
+      }}
+    >
+      {characters.map((char, index) => (
+        <motion.span
+          key={index}
+          initial={{ opacity: 0, filter: 'blur(4px)' }}
+          animate={{ opacity: 1, filter: 'blur(0px)' }}
+          transition={{
+            duration: 0.25,
+            delay: index * 0.02,
+            ease: [0.16, 1, 0.3, 1]
+          }}
+          style={{ whiteSpace: 'pre' }}
+        >
+          {char}
+        </motion.span>
+      ))}
+      <motion.span
+        animate={{ opacity: [1, 0, 1] }}
+        transition={{ duration: 0.8, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          color: '#C5A880',
+          fontWeight: 300,
+          marginLeft: '4px'
+        }}
+      >
+        |
+      </motion.span>
+    </motion.h2>
+  );
+};
+
 export default function CinematicIntro({ onComplete }) {
-  const [scene, setScene] = useState(1); // 1 = Awakening (0-0.8s), 2 = Scanning (0.8-2.5s), 3 = Brand Reveal (2.5-4.5s), 4 = Exit (4.5s-5.0s)
+  const [scene, setScene] = useState(1); // 1 = Awakening (0-1.3s), 2 = Scanning (1.3-3.0s), 3 = Brand Reveal (3.0-4.7s), 4 = Exit (4.7s-5.0s)
+  const [initTextStep, setInitTextStep] = useState(0);
   
   // Status states for analysis cards in Scene 2
   const [skinStatus, setSkinStatus] = useState('loading'); // loading -> complete
@@ -28,18 +86,20 @@ export default function CinematicIntro({ onComplete }) {
 
   useEffect(() => {
     // ─── TIMELINE SEQUENCE (5.0s total max) ───
-    const scanTimer = setTimeout(() => setScene(2), 800); // 0.8s: Transition to Scanning
-    
-    // Sped-up staggered status card reveals (giving a fast but readable pace)
-    const skinTimer = setTimeout(() => setSkinStatus('complete'), 1400); // 1.4s
-    const styleTimer = setTimeout(() => setStyleStatus('complete'), 1900); // 1.9s
-    const matchTimer = setTimeout(() => setMatchStatus('complete'), 2400); // 2.4s
+    const textTimer1 = setTimeout(() => setInitTextStep(1), 400); // 0.4s
+    const textTimer2 = setTimeout(() => setInitTextStep(2), 800); // 0.8s
 
-    const brandTimer = setTimeout(() => setScene(3), 2500); // 2.5s: Transition to Brand Reveal (hold for 2.0 full seconds)
-    const exitTimer = setTimeout(() => setScene(4), 4500); // 4.5s: Exit begins
+    const scanTimer = setTimeout(() => setScene(2), 1300); // 1.3s: Transition to Scanning
+    
+    // Sped-up staggered status card reveals
+    const skinTimer = setTimeout(() => setSkinStatus('complete'), 1800); // 1.8s
+    const styleTimer = setTimeout(() => setStyleStatus('complete'), 2300); // 2.3s
+    const matchTimer = setTimeout(() => setMatchStatus('complete'), 2800); // 2.8s
+
+    const brandTimer = setTimeout(() => setScene(3), 3000); // 3.0s: Transition to Brand Reveal (hold for 1.3 seconds)
     const completeTimer = setTimeout(() => {
       if (onComplete) onComplete();
-    }, 5000); // 5.0s: Fully unmount
+    }, 4300); // 4.3s: Complete and initiate unmount/exit transitions
 
     // Disable scrolling during intro
     const originalOverflow = document.body.style.overflow;
@@ -47,12 +107,13 @@ export default function CinematicIntro({ onComplete }) {
 
     return () => {
       document.body.style.overflow = originalOverflow;
+      clearTimeout(textTimer1);
+      clearTimeout(textTimer2);
       clearTimeout(scanTimer);
       clearTimeout(skinTimer);
       clearTimeout(styleTimer);
       clearTimeout(matchTimer);
       clearTimeout(brandTimer);
-      clearTimeout(exitTimer);
       clearTimeout(completeTimer);
     };
   }, [onComplete]);
@@ -73,9 +134,9 @@ export default function CinematicIntro({ onComplete }) {
   return (
     <motion.div
       initial={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-      animate={scene === 4 ? { opacity: 0, filter: 'blur(20px)', scale: 1.03 } : { opacity: 1, filter: 'blur(0px)', scale: 1 }}
-      exit={{ opacity: 0, filter: 'blur(20px)', scale: 1.03 }}
-      transition={{ duration: 0.5, ease: LUXURY_EASE }}
+      animate={scene === 4 ? { opacity: 0, filter: 'blur(18px)', scale: 1.04 } : { opacity: 1, filter: 'blur(0px)', scale: 1 }}
+      exit={{ opacity: 0, filter: 'blur(18px)', scale: 1.04 }}
+      transition={{ duration: 0.7, ease: LUXURY_EASE }}
       style={{
         position: 'fixed',
         inset: 0,
@@ -238,7 +299,7 @@ export default function CinematicIntro({ onComplete }) {
       {/* ─── SCENE RENDERER ─── */}
       <div style={{ zIndex: 10, position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '1200px', padding: '0 40px' }}>
         
-        {/* ─── SCENE 1: SYSTEM AWAKENING (0s - 0.8s) ─── */}
+        {/* ─── SCENE 1: SYSTEM AWAKENING (0s - 1.3s) ─── */}
         {scene === 1 && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -262,21 +323,8 @@ export default function CinematicIntro({ onComplete }) {
                 boxShadow: '0 0 16px rgba(197, 168, 128, 0.4)',
               }}
             />
-            {/* Awakening typography */}
-            <h2
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: '18px',
-                fontStyle: 'italic',
-                fontWeight: 400,
-                color: '#4A4844',
-                letterSpacing: '0.14em',
-                margin: 0,
-                textAlign: 'center',
-              }}
-            >
-              Initializing Beauty Intelligence
-            </h2>
+            {/* Awakening typography with smooth character typing/scanning */}
+            <AnimatedInitText step={initTextStep} />
           </motion.div>
         )}
 

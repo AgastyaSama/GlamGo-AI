@@ -866,4 +866,38 @@ footer a:hover {
 
 .success-stories-carousel:active {
   cursor: grabbing;
-}
+}
+
+/* ─── GLOBAL FOOTER STYLES ─────────────────────────────────────────────────── */
+.footer-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 2px;
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--accent-gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-link:hover {
+  color: var(--accent-gold) !important;
+}
+
+.footer-link:hover::after {
+  transform: scaleX(1);
+}
+
