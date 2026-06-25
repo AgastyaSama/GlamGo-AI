@@ -4,6 +4,7 @@ import { AppContext } from '../context/AppContext';
 import { Sparkles, MapPin, ChevronDown, Award, ShieldAlert } from 'lucide-react';
 import { linkHoverProps, btnPrimaryHoverProps, btnSecondaryHoverProps, DURATION, EASING } from '../styles/motion';
 import UserAvatar from './UserAvatar';
+import BrandLogo from './Logo';
 
 const Navbar = ({ currentView, setCurrentView }) => {
   const {
@@ -77,36 +78,7 @@ const Navbar = ({ currentView, setCurrentView }) => {
           whileTap={{ scale: 0.98 }}
           transition={{ duration: DURATION.fast, ease: EASING.subtle }}
         >
-          <motion.div
-            style={{
-              background: 'linear-gradient(135deg, #1C1C1C 0%, #2A2A2A 100%)', // Luxury charcoal gradient
-              borderRadius: '6px',
-              padding: '6px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid rgba(197, 168, 128, 0.3)', // Thin gold border
-              boxShadow: '0 2px 8px rgba(197, 168, 128, 0.15)'
-            }}
-            whileHover={{
-              rotate: 15,
-              scale: 1.08,
-              borderColor: 'rgba(197, 168, 128, 0.7)',
-              boxShadow: '0 0 15px rgba(197, 168, 128, 0.35)'
-            }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-          >
-            <Sparkles size={16} color="var(--bg-primary)" />
-          </motion.div>
-          <span style={{
-            fontSize: '20px',
-            fontWeight: 700,
-            fontFamily: 'var(--font-serif)',
-            color: 'var(--text-primary)',
-            letterSpacing: '-0.025em'
-          }}>
-            GlamGo <span style={{ fontStyle: 'italic', color: 'var(--accent-gold)' }}>AI</span>
-          </span>
+          <BrandLogo />
         </motion.div>
 
         {/* Main Links (Desktop) */}

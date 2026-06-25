@@ -21,12 +21,14 @@ import ProfessionalOnboarding from './pages/ProfessionalOnboarding';
 import ProfileSuite from './pages/ProfileSuite';
 import DeveloperSandbox from './components/DeveloperSandbox';
 import Toast from './components/Toast';
+import CinematicIntro from './components/CinematicIntro';
 
 
 function GlamGoApp() {
   const [currentView, setCurrentView] = useState('landing');
   const [selectedProId, setSelectedProId] = useState('pro_priya'); // Default selector
   const [bookingParams, setBookingParams] = useState(null);
+  const [showIntro, setShowIntro] = useState(true);
 
   const { currentUser } = useContext(AppContext);
 
@@ -71,27 +73,56 @@ function GlamGoApp() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <AmbientBackground />
-      <Navbar currentView={currentView} setCurrentView={setCurrentView} />
-      <div style={{ flex: 1, position: 'relative' }}>
-        {/*
-          AnimatePresence mode="wait" ensures the exiting page fully dissolves
-          before the entering page begins — critical for the luxury crossfade feel.
-        */}
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={currentView}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            {renderView()}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-      <DeveloperSandbox setCurrentView={setCurrentView} />
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowX: 'hidden' }}>
+      <AnimatePresence>
+        {showIntro && (
+          <CinematicIntro
+            onComplete={() => {
+              setShowIntro(false);
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      <motion.div
+        animate={{
+          filter: showIntro ? 'blur(10px)' : 'blur(0px)',
+          scale: showIntro ? 0.98 : 1,
+          opacity: showIntro ? 0 : 1,
+        }}
+        transition={{
+          duration: 0.5,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          transformOrigin: 'center center',
+          width: '100%',
+        }}
+      >
+        <AmbientBackground />
+        <Navbar currentView={currentView} setCurrentView={setCurrentView} />
+        <div style={{ flex: 1, position: 'relative' }}>
+          {/*
+            AnimatePresence mode="wait" ensures the exiting page fully dissolves
+            before the entering page begins — critical for the luxury crossfade feel.
+          */}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={currentView}
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              {renderView()}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        <DeveloperSandbox setCurrentView={setCurrentView} />
+      </motion.div>
       <Toast />
     </div>
 

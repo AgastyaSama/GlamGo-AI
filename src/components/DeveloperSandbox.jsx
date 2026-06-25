@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AppContext } from '../context/AppContext';
 import UserAvatar from './UserAvatar';
-import { Sliders, X, Database, Terminal } from 'lucide-react';
+import { Sliders, X, Database, Terminal, Sparkles } from 'lucide-react';
 
 const DeveloperSandbox = ({ setCurrentView }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -277,6 +277,40 @@ const DeveloperSandbox = ({ setCurrentView }) => {
                   whileTap={{ scale: 0.98 }}
                 >
                   {resetCompleted ? 'Platform Reset Complete ✓' : 'Reset & Seed Platform'}
+                </motion.button>
+              </div>
+
+              {/* Cinematic Intro Controller */}
+              <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <h4 style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Sparkles size={13} color="var(--accent-gold)" /> Presentation
+                </h4>
+                <p style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+                  Reloads the application to watch the cinematic startup sequence again.
+                </p>
+                <motion.button
+                  onClick={() => {
+                    window.location.reload();
+                  }}
+                  className="btn-primary"
+                  style={{
+                    width: '100%',
+                    background: 'transparent',
+                    borderColor: 'var(--text-primary)',
+                    color: 'var(--text-primary)',
+                    padding: '8px 16px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    fontSize: '10.5px'
+                  }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    background: 'var(--text-primary)',
+                    color: 'var(--bg-primary)'
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Replay Intro Animation
                 </motion.button>
               </div>
 

@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AppContext } from '../context/AppContext';
-import { Sparkles, Eye, EyeOff, Lock, Mail, ArrowRight, ShieldAlert, Award } from 'lucide-react';
+import { Sparkles, Eye, EyeOff, Lock, Mail, ArrowRight, ShieldAlert } from 'lucide-react';
 import { btnPrimaryHoverProps, btnSecondaryHoverProps, EASING, DURATION } from '../styles/motion';
 
 const BG_PARTICLES = [
