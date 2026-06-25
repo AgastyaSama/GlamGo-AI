@@ -20,16 +20,23 @@ const Navbar = ({ currentView, setCurrentView }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  const [isLocationOpen, setIsLocationOpen] = useState(false);
+  const locationDropdownRef = useRef(null);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsProfileOpen(false);
+      }
+      if (locationDropdownRef.current && !locationDropdownRef.current.contains(event.target)) {
+        setIsLocationOpen(false);
       }
     };
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         setIsProfileOpen(false);
+        setIsLocationOpen(false);
       }
     };
 
@@ -218,46 +225,132 @@ const Navbar = ({ currentView, setCurrentView }) => {
 
         {/* Right side options (Desktop) */}
         <div className="navbar-actions-desktop" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          {/* City Selector */}
-          <motion.div
-            whileHover={{
-              borderColor: 'rgba(197, 168, 128, 0.6)',
-              backgroundColor: 'rgba(197, 168, 128, 0.03)',
-              boxShadow: '0 2px 10px rgba(197, 168, 128, 0.1)',
-              y: -1.5
-            }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              background: 'rgba(28, 28, 28, 0.015)',
-              border: '1px solid rgba(197, 168, 128, 0.25)', // Elegant light gold border
-              borderRadius: '6px',
-              padding: '6px 12px',
-              boxSizing: 'border-box'
-            }}
-          >
-            <MapPin size={13} color="var(--accent-gold)" />
-            <select
-              id="select-city"
-              value={selectedCity}
-              onChange={(e) => setSelectedCity(e.target.value)}
+          {/* Custom Location Dropdown */}
+          <div ref={locationDropdownRef} style={{ position: 'relative' }}>
+            <motion.div
+              whileHover={{
+                borderColor: 'rgba(197, 168, 128, 0.6)',
+                backgroundColor: 'rgba(197, 168, 128, 0.03)',
+                boxShadow: '0 2px 10px rgba(197, 168, 128, 0.1)',
+                y: -1.5
+              }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setIsLocationOpen(!isLocationOpen)}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
               style={{
-                background: 'none',
-                border: 'none',
-                color: 'var(--text-primary)',
-                fontSize: '12px',
-                fontWeight: 500,
-                outline: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                background: 'rgba(252, 251, 247, 0.6)',
+                border: '1px solid rgba(197, 168, 128, 0.25)', // Elegant light gold border
+                borderRadius: '6px',
+                padding: '8px 14px',
                 cursor: 'pointer',
-                fontFamily: 'var(--font-display)'
+                boxSizing: 'border-box',
+                userSelect: 'none'
               }}
             >
-              <option value="Pune" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Pune</option>
-            </select>
-          </motion.div>
+              <MapPin size={13} color="var(--accent-gold)" />
+              <span style={{ fontSize: '12px', fontWeight: 500, color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
+                {selectedCity}
+              </span>
+              <motion.div
+                animate={{ rotate: isLocationOpen ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                style={{ display: 'flex', alignItems: 'center', color: 'var(--text-muted)' }}
+              >
+                <ChevronDown size={12} />
+              </motion.div>
+            </motion.div>
+
+            <AnimatePresence>
+              {isLocationOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2, ease: EASING.luxury }}
+                  style={{
+                    position: 'absolute',
+                    top: 'calc(100% + 8px)',
+                    left: 0,
+                    width: '200px',
+                    backgroundColor: '#FCFBF7', // Cream background
+                    border: '1px solid rgba(197, 168, 128, 0.25)', // Thin gold border
+                    borderRadius: '8px',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.06)', // Soft shadow
+                    padding: '8px',
+                    zIndex: 101,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '2px'
+                  }}
+                >
+                  {/* Pune Title Option */}
+                  <div
+                    onClick={() => {
+                      setSelectedCity('Pune');
+                      setIsLocationOpen(false);
+                    }}
+                    style={{
+                      padding: '8px 12px',
+                      borderRadius: '4px',
+                      fontSize: '12.5px',
+                      fontWeight: 600,
+                      color: selectedCity === 'Pune' ? 'var(--accent-gold)' : 'var(--text-primary)',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.2s, color 0.2s',
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(197, 168, 128, 0.08)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+                  >
+                    Pune
+                  </div>
+
+                  {/* Divider */}
+                  <div style={{ height: '1px', backgroundColor: 'rgba(197, 168, 128, 0.15)', margin: '4px 0' }} />
+
+                  {/* Areas List */}
+                  {[
+                    'Koregaon Park',
+                    'Baner',
+                    'Kothrud',
+                    'Viman Nagar',
+                    'Hinjewadi',
+                    'Wakad',
+                    'Kalyani Nagar',
+                    'Aundh'
+                  ].map((area) => (
+                    <div
+                      key={area}
+                      onClick={() => {
+                        setSelectedCity(area);
+                        setIsLocationOpen(false);
+                      }}
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: '4px',
+                        fontSize: '12px',
+                        color: selectedCity === area ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.2s, color 0.2s',
+                      }}
+                      onMouseEnter={(e) => { 
+                        e.currentTarget.style.backgroundColor = 'rgba(197, 168, 128, 0.08)'; 
+                        e.currentTarget.style.color = 'var(--accent-gold)';
+                      }}
+                      onMouseLeave={(e) => { 
+                        e.currentTarget.style.backgroundColor = 'transparent'; 
+                        e.currentTarget.style.color = selectedCity === area ? 'var(--accent-gold)' : 'var(--text-secondary)';
+                      }}
+                    >
+                      {area}
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Dynamic auth buttons */}
           {!currentUser ? (
@@ -979,6 +1072,14 @@ const Navbar = ({ currentView, setCurrentView }) => {
                   }}
                 >
                   <option value="Pune" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Pune</option>
+                  <option value="Koregaon Park" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Koregaon Park</option>
+                  <option value="Baner" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Baner</option>
+                  <option value="Kothrud" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Kothrud</option>
+                  <option value="Viman Nagar" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Viman Nagar</option>
+                  <option value="Hinjewadi" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Hinjewadi</option>
+                  <option value="Wakad" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Wakad</option>
+                  <option value="Kalyani Nagar" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Kalyani Nagar</option>
+                  <option value="Aundh" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Aundh</option>
                 </select>
               </div>
 

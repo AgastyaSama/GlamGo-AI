@@ -462,13 +462,36 @@ select:focus-visible {
     border-bottom: 1px solid var(--border-light);
     display: block;
     color: var(--text-secondary);
-    cursor: pointer;
-    transition: var(--transition-smooth);
+    cursor: pointer !important;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+
+  .navbar-menu-mobile .mobile-nav-link:hover {
+    opacity: 0.75;
+    color: var(--text-primary);
+  }
+
+  .navbar-menu-mobile .mobile-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--accent-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .navbar-menu-mobile .mobile-nav-link:hover::after,
+  .navbar-menu-mobile .mobile-nav-link.active::after {
+    transform: scaleX(1);
   }
 
   .navbar-menu-mobile .mobile-nav-link.active {
     color: var(--accent-gold) !important;
-    border-bottom-color: var(--accent-gold);
   }
 
   .navbar-menu-mobile .mobile-controls-row {
@@ -691,8 +714,8 @@ select:focus-visible {
 /* ─── STATS BAR ICON HOVER MICRO-ANIMATION ──────────────────────────────────── */
 .icon-container-hover {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease,
-              background-color 0.3s ease;
+    border-color 0.3s ease,
+    background-color 0.3s ease;
 }
 
 .icon-container-hover:hover {
@@ -731,8 +754,8 @@ footer a:hover {
   box-shadow: 0 4px 20px -2px rgba(28, 28, 28, 0.015), 0 12px 40px -4px rgba(197, 168, 128, 0.03);
   backdrop-filter: blur(16px);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   z-index: 1;
 }
@@ -825,16 +848,35 @@ footer a:hover {
 }
 
 @keyframes pulse-glow-ring {
-  0% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.08); opacity: 0; }
-  100% { transform: scale(1); opacity: 0.6; }
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
 }
 
 /* Scanner Card Scanning Line */
 @keyframes scan-line-vertical {
-  0% { top: 0%; }
-  50% { top: 100%; }
-  100% { top: 0%; }
+  0% {
+    top: 0%;
+  }
+
+  50% {
+    top: 100%;
+  }
+
+  100% {
+    top: 0%;
+  }
 }
 
 /* Facial node blinks */
@@ -843,9 +885,21 @@ footer a:hover {
 }
 
 @keyframes hud-dot-pulse {
-  0% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.5); opacity: 1; box-shadow: 0 0 8px var(--accent-gold); }
-  100% { transform: scale(1); opacity: 0.4; }
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+    box-shadow: 0 0 8px var(--accent-gold);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
 }
 
 /* Horizontal success story scroll bar styling */
@@ -855,13 +909,16 @@ footer a:hover {
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: var(--space-md) 10px var(--space-2xl) 10px;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
   cursor: grab;
 }
 
 .success-stories-carousel::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
+  /* Safari and Chrome */
 }
 
 .success-stories-carousel:active {
@@ -900,4 +957,3 @@ footer a:hover {
 .footer-link:hover::after {
   transform: scaleX(1);
 }
-

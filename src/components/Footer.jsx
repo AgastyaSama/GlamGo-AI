@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import BrandLogo from './Logo';
+import { Mail } from 'lucide-react';
 
 const containerVariants = {
   hidden: {},
@@ -23,6 +24,7 @@ const columnVariants = {
 export default function Footer({ setCurrentView }) {
   const handleAreaClick = () => {
     setCurrentView('marketplace');
+    window.scrollTo(0, 0);
   };
 
   const handleLinkClick = (view) => {
@@ -80,6 +82,12 @@ export default function Footer({ setCurrentView }) {
             <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0, maxWidth: '280px' }}>
               Luxury salon experiences, personalized by intelligence.
             </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px', color: 'var(--text-secondary)', fontSize: '12.5px' }}>
+              <Mail size={13} color="var(--accent-gold)" />
+              <a href="mailto:support@glamgo.ai" className="footer-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+                support@glamgo.ai
+              </a>
+            </div>
           </div>
         </motion.div>
 
@@ -108,6 +116,7 @@ export default function Footer({ setCurrentView }) {
             <li><span className="footer-link" onClick={() => handleLinkClick('marketplace')}>Facials</span></li>
             <li><span className="footer-link" onClick={() => handleLinkClick('marketplace')}>Skin Care</span></li>
             <li><span className="footer-link" onClick={() => handleLinkClick('marketplace')}>Bridal Beauty</span></li>
+            <li><span className="footer-link" onClick={() => handleLinkClick('marketplace')}>MedSpa</span></li>
           </ul>
         </motion.div>
 
@@ -135,6 +144,8 @@ export default function Footer({ setCurrentView }) {
             <li><span className="footer-link" onClick={() => handleAreaClick('Kothrud')}>Kothrud</span></li>
             <li><span className="footer-link" onClick={() => handleAreaClick('Viman Nagar')}>Viman Nagar</span></li>
             <li><span className="footer-link" onClick={() => handleAreaClick('Hinjewadi')}>Hinjewadi</span></li>
+            <li><span className="footer-link" onClick={() => handleAreaClick('Wakad')}>Wakad</span></li>
+            <li><span className="footer-link" onClick={() => handleAreaClick('Kalyani Nagar')}>Kalyani Nagar</span></li>
           </ul>
         </motion.div>
       </motion.div>

@@ -83,17 +83,17 @@ const SUCCESS_STORIES = [
 const CountUp = ({ to, duration = 1.2, suffix = '' }) => {
   const [count, setCount] = useState(0);
   const numericTo = parseFloat(to.replace(/[^0-9.]/g, ''));
-  
+
   useEffect(() => {
     let start = 0;
     const end = numericTo;
     if (start === end) return;
-    
+
     const totalMiliseconds = duration * 1000;
     const incrementTime = 25; // ms per tick
     const steps = Math.ceil(totalMiliseconds / incrementTime);
     const stepValue = end / steps;
-    
+
     const timer = setInterval(() => {
       start += stepValue;
       if (start >= end) {
@@ -103,13 +103,13 @@ const CountUp = ({ to, duration = 1.2, suffix = '' }) => {
         setCount(start);
       }
     }, incrementTime);
-    
+
     return () => clearInterval(timer);
   }, [numericTo, duration]);
 
   const isFloat = to.includes('.');
   const formattedCount = isFloat ? count.toFixed(1) : Math.floor(count);
-  
+
   return <span>{formattedCount}{suffix}</span>;
 };
 
@@ -131,7 +131,7 @@ const LandingPage = ({ setCurrentView }) => {
     target: timelineRef,
     offset: ["start end", "end end"]
   });
-  
+
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 90,
     damping: 25,
@@ -210,7 +210,7 @@ const LandingPage = ({ setCurrentView }) => {
     };
     handleResize();
     window.addEventListener('resize', handleResize);
-    
+
     const timer = setTimeout(() => {
       handleResize();
     }, 600);
@@ -242,7 +242,7 @@ const LandingPage = ({ setCurrentView }) => {
       } else {
         clearInterval(logInterval);
         setDemoState('scanning');
-        
+
         let progress = 0;
         const progressInterval = setInterval(() => {
           progress += 5;
@@ -559,7 +559,7 @@ const LandingPage = ({ setCurrentView }) => {
           animate="animate"
           style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}
         >
-          <motion.div 
+          <motion.div
             style={{
               position: 'absolute',
               width: '380px',
@@ -586,7 +586,7 @@ const LandingPage = ({ setCurrentView }) => {
             <>
               {/* Badge 1: Top (Centered above card) */}
               <div style={{ position: 'absolute', top: '-22px', left: 0, right: 0, display: 'flex', justifyContent: 'center', zIndex: 10, pointerEvents: 'none' }}>
-                <motion.div 
+                <motion.div
                   variants={badgeVariant(0.7)}
                   animate={{
                     y: scannerHovered ? -12 : 0,
@@ -610,7 +610,7 @@ const LandingPage = ({ setCurrentView }) => {
 
               {/* Badge 2: Right (Orbiting the upper right side) */}
               <div style={{ position: 'absolute', top: '90px', right: '-25px', zIndex: 10, pointerEvents: 'none' }}>
-                <motion.div 
+                <motion.div
                   variants={badgeVariant(0.9)}
                   animate={{
                     x: scannerHovered ? 12 : 0,
@@ -623,7 +623,7 @@ const LandingPage = ({ setCurrentView }) => {
                     animate={{ y: [4, -4, 4], x: [-2, 2, -2] }}
                     transition={{ duration: 7.0, repeat: Infinity, ease: 'easeInOut' }}
                     className="ai-status-badge"
-                    style={{ 
+                    style={{
                       border: scannerHovered ? '1.5px solid var(--accent-rose)' : '1px solid var(--accent-rose)',
                       boxShadow: scannerHovered ? '0 8px 30px rgba(220, 160, 160, 0.25)' : 'var(--shadow-luxury)'
                     }}
@@ -635,7 +635,7 @@ const LandingPage = ({ setCurrentView }) => {
 
               {/* Badge 3: Middle (Orbiting the lower left side) */}
               <div style={{ position: 'absolute', top: '170px', left: '-25px', zIndex: 10, pointerEvents: 'none' }}>
-                <motion.div 
+                <motion.div
                   variants={badgeVariant(1.1)}
                   animate={{
                     x: scannerHovered ? -12 : 0,
@@ -660,7 +660,7 @@ const LandingPage = ({ setCurrentView }) => {
 
               {/* Badge 4: Bottom Corner (Attached to bottom right border of image/card) */}
               <div style={{ position: 'absolute', bottom: '-15px', right: '25px', zIndex: 10, pointerEvents: 'none' }}>
-                <motion.div 
+                <motion.div
                   variants={badgeVariant(1.3)}
                   animate={{
                     x: scannerHovered ? 12 : 0,
@@ -673,7 +673,7 @@ const LandingPage = ({ setCurrentView }) => {
                     animate={{ y: [4, -4, 4] }}
                     transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
                     className="ai-status-badge badge-glow-pulse"
-                    style={{ 
+                    style={{
                       border: scannerHovered ? '1.5px solid var(--text-primary)' : '1px solid var(--text-primary)',
                       boxShadow: scannerHovered ? '0 8px 30px rgba(28, 28, 28, 0.15)' : 'var(--shadow-luxury)'
                     }}
@@ -733,19 +733,19 @@ const LandingPage = ({ setCurrentView }) => {
               />
 
               {/* Corner brackets simulating AI scanning focus */}
-              <motion.div 
-                style={{ 
-                  position: 'absolute', 
-                  inset: '12px', 
-                  border: '1px dashed rgba(197, 168, 128, 0.25)', 
-                  pointerEvents: 'none', 
-                  zIndex: 3 
+              <motion.div
+                style={{
+                  position: 'absolute',
+                  inset: '12px',
+                  border: '1px dashed rgba(197, 168, 128, 0.25)',
+                  pointerEvents: 'none',
+                  zIndex: 3
                 }}
                 animate={{
                   borderColor: (scannerHovered || demoScanning) ? 'rgba(197, 168, 128, 0.5)' : 'rgba(197, 168, 128, 0.25)'
                 }}
               />
-              <motion.div 
+              <motion.div
                 style={{ position: 'absolute', top: '16px', left: '16px', width: '12px', height: '12px', borderTop: '2px solid var(--accent-gold)', borderLeft: '2px solid var(--accent-gold)', zIndex: 4 }}
                 animate={{
                   x: (scannerHovered || demoScanning) ? 4 : 0,
@@ -753,7 +753,7 @@ const LandingPage = ({ setCurrentView }) => {
                 }}
                 transition={{ type: 'spring', stiffness: 150, damping: 15 }}
               />
-              <motion.div 
+              <motion.div
                 style={{ position: 'absolute', top: '16px', right: '16px', width: '12px', height: '12px', borderTop: '2px solid var(--accent-gold)', borderRight: '2px solid var(--accent-gold)', zIndex: 4 }}
                 animate={{
                   x: (scannerHovered || demoScanning) ? -4 : 0,
@@ -761,7 +761,7 @@ const LandingPage = ({ setCurrentView }) => {
                 }}
                 transition={{ type: 'spring', stiffness: 150, damping: 15 }}
               />
-              <motion.div 
+              <motion.div
                 style={{ position: 'absolute', bottom: '16px', left: '16px', width: '12px', height: '12px', borderBottom: '2px solid var(--accent-gold)', borderLeft: '2px solid var(--accent-gold)', zIndex: 4 }}
                 animate={{
                   x: (scannerHovered || demoScanning) ? 4 : 0,
@@ -769,7 +769,7 @@ const LandingPage = ({ setCurrentView }) => {
                 }}
                 transition={{ type: 'spring', stiffness: 150, damping: 15 }}
               />
-              <motion.div 
+              <motion.div
                 style={{ position: 'absolute', bottom: '16px', right: '16px', width: '12px', height: '12px', borderBottom: '2px solid var(--accent-gold)', borderRight: '2px solid var(--accent-gold)', zIndex: 4 }}
                 animate={{
                   x: (scannerHovered || demoScanning) ? -4 : 0,
@@ -792,7 +792,7 @@ const LandingPage = ({ setCurrentView }) => {
                       zIndex: 3
                     }}
                     initial={{ opacity: 0 }}
-                    animate={{ 
+                    animate={{
                       opacity: demoScanning ? [0.4, 0.8, 0.4] : 0.6,
                       scale: demoScanning ? [0.99, 1.01, 0.99] : 1
                     }}
@@ -1176,7 +1176,7 @@ const LandingPage = ({ setCurrentView }) => {
                 <div className="premium-card-glow" />
                 {/* Hover Gradient Overlay */}
                 <div className="premium-card-overlay" />
-                
+
                 {/* Animated Icon Container */}
                 <div
                   className="icon-container"
@@ -1613,7 +1613,7 @@ const LandingPage = ({ setCurrentView }) => {
               color: 'var(--text-muted)'
             }}>
               <span>Status: Online • Pune Concierge Active</span>
-              <button 
+              <button
                 onClick={() => setConciergeStep(0)}
                 style={{
                   background: 'transparent',
@@ -1842,12 +1842,12 @@ const LandingPage = ({ setCurrentView }) => {
         </motion.div>
 
         {/* STAGGERED CAROUSEL CONTAINER */}
-        <div 
-          style={{ 
+        <div
+          style={{
             position: 'relative',
-            width: '100%', 
+            width: '100%',
             height: isMobile ? '560px' : '640px',
-            overflow: 'hidden', 
+            overflow: 'hidden',
             margin: '0 auto',
             display: 'flex',
             alignItems: 'center',
@@ -1911,22 +1911,22 @@ const LandingPage = ({ setCurrentView }) => {
                 {/* Side by Side Before/After Images */}
                 <div style={{ display: 'flex', gap: '12px', height: '130px', width: '100%' }}>
                   <div style={{ flex: 1, position: 'relative', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-light)' }}>
-                    <img 
-                      src={story.beforeImg} 
-                      alt="Before" 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    <img
+                      src={story.beforeImg}
+                      alt="Before"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       draggable="false"
                     />
                     <div style={{ position: 'absolute', bottom: '6px', left: '6px', background: 'rgba(28,28,28,0.7)', color: '#fff', fontSize: '9px', fontWeight: 'bold', padding: '2px 6px', borderRadius: '6px' }}>
                       BEFORE
                     </div>
                   </div>
-                  
+
                   <div style={{ flex: 1, position: 'relative', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--accent-gold)' }}>
-                    <img 
-                      src={story.afterImg} 
-                      alt="After" 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    <img
+                      src={story.afterImg}
+                      alt="After"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       draggable="false"
                     />
                     <div style={{ position: 'absolute', bottom: '6px', left: '6px', background: 'rgba(197,168,128,0.9)', color: '#1c1c1c', fontSize: '9px', fontWeight: 'bold', padding: '2px 6px', borderRadius: '6px' }}>
@@ -1936,10 +1936,10 @@ const LandingPage = ({ setCurrentView }) => {
                 </div>
 
                 {/* AI recommendation bar */}
-                <div style={{ 
-                  background: 'rgba(197, 168, 128, 0.08)', 
-                  border: '1px solid rgba(197, 168, 128, 0.2)', 
-                  borderRadius: '6px', 
+                <div style={{
+                  background: 'rgba(197, 168, 128, 0.08)',
+                  border: '1px solid rgba(197, 168, 128, 0.2)',
+                  borderRadius: '6px',
                   padding: '10px 12px',
                   fontSize: '11px',
                   lineHeight: '1.45',

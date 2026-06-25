@@ -52,7 +52,7 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
 
     try {
       const result = await processChatConcierge(text, selectedCity);
-      
+
       const aiReply = {
         id: "m_" + Math.random().toString(36).substr(2, 9),
         sender: "ai",
@@ -93,7 +93,7 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
   return (
     <div style={{ minHeight: 'calc(100vh - 81px)', padding: 'var(--space-3xl) 0' }} className="bg-gradient-radial">
       <div className="container mobile-stack-grid" style={{ maxWidth: '1100px', display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 'var(--space-2xl)', alignItems: 'start' }}>
-        
+
         {/* Left Column: Chat Dialogue */}
         <GlassCard hover={false} className="chat-card-height" style={{ height: '600px', display: 'flex', flexDirection: 'column', padding: 'var(--space-xl)' }}>
           {/* Chat Header */}
@@ -117,7 +117,7 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
           {/* Dialogue Grid */}
           <div style={{ flex: 1, overflowY: 'auto', padding: 'var(--space-md) var(--space-xs)', display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
             {messages.map((msg) => (
-              <div 
+              <div
                 key={msg.id}
                 style={{
                   display: 'flex',
@@ -139,7 +139,7 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
 
                   {/* Render package widget if compiled */}
                   {msg.packageData && msg.packageData.services.length > 0 && (
-                    <motion.div 
+                    <motion.div
                       style={{
                         marginTop: '16px',
                         background: 'var(--bg-secondary)',
@@ -159,7 +159,7 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
                         <span className="badge badge-ai">AI Package Recommendation</span>
                         <MatchScore score={msg.packageData.matchScore} />
                       </div>
-                      
+
                       <h4 style={{ fontSize: '16px', fontWeight: 600, fontFamily: 'var(--font-serif)', color: 'var(--text-primary)' }}>
                         {msg.packageData.occasion} Bundle
                       </h4>
@@ -236,9 +236,9 @@ const AIChatConcierge = ({ setCurrentView, setBookingParams }) => {
               className="input-field"
               disabled={isTyping}
             />
-            <motion.button 
-              onClick={() => handleSend()} 
-              className="btn-primary" 
+            <motion.button
+              onClick={() => handleSend()}
+              className="btn-primary"
               disabled={isTyping}
               style={{ padding: '12px 20px', borderRadius: '6px' }}
               {...(isTyping ? {} : btnPrimaryHoverProps)}
